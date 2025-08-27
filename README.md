@@ -10,21 +10,25 @@
 ## ✨ 주요 기능
 
 ### 📱 **듀얼 모드 지원**
+
 - **운전자 모드**: 수익 관리, 요청 수락, 운행 추적
 - **고객 모드**: 대리운전 요청, 요금 계산, 이용 내역
 
 ### 🗺️ **실시간 위치 서비스**
+
 - GPS 기반 정확한 위치 추적
 - 백그라운드 위치 추적 지원
 - 거리 계산 및 경로 최적화
 - 지오코딩/역지오코딩 기능
 
 ### 🔔 **스마트 알림 시스템**
+
 - 푸시 알림 및 오버레이 알림
 - 운행 상태 실시간 업데이트
 - 다른 앱 위에 중요 정보 표시
 
 ### 🛡️ **안드로이드 특화 기능**
+
 - 시스템 오버레이 권한 (`SYSTEM_ALERT_WINDOW`)
 - 백그라운드 위치 추적 (`ACCESS_BACKGROUND_LOCATION`)
 - 포그라운드 서비스 (`FOREGROUND_SERVICE`)
@@ -32,30 +36,33 @@
 
 ## 🛠️ 기술 스택
 
-| 카테고리 | 기술 |
-|---------|------|
-| **Framework** | React Native + Expo |
-| **Language** | TypeScript |
-| **State Management** | Context API + useReducer |
-| **Navigation** | React Navigation v6 |
-| **Location Services** | Expo Location |
-| **Notifications** | Expo Notifications |
-| **UI Components** | Custom Components + Ionicons |
+| 카테고리              | 기술                         |
+| --------------------- | ---------------------------- |
+| **Framework**         | React Native + Expo          |
+| **Language**          | TypeScript                   |
+| **State Management**  | Context API + useReducer     |
+| **Navigation**        | React Navigation v6          |
+| **Location Services** | Expo Location                |
+| **Notifications**     | Expo Notifications           |
+| **UI Components**     | Custom Components + Ionicons |
 
 ## 📦 설치 및 실행
 
 ### 1. 저장소 클론
+
 ```bash
 git clone https://github.com/zyansuh/Macroify.git
 cd Macroify
 ```
 
 ### 2. 의존성 설치
+
 ```bash
 npm install
 ```
 
 ### 3. 개발 서버 실행
+
 ```bash
 # 안드로이드에서 실행
 npm run android
@@ -65,6 +72,7 @@ npm start
 ```
 
 ### 4. 실제 빌드 (선택사항)
+
 ```bash
 # Android APK 빌드
 npx expo build:android
@@ -78,7 +86,7 @@ npx expo build:android
     "INTERNET",
     "ACCESS_NETWORK_STATE",
     "ACCESS_FINE_LOCATION",
-    "ACCESS_COARSE_LOCATION", 
+    "ACCESS_COARSE_LOCATION",
     "ACCESS_BACKGROUND_LOCATION",
     "SYSTEM_ALERT_WINDOW",
     "WAKE_LOCK",

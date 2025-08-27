@@ -3,8 +3,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { useAuth } from "../contexts/AuthContext";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
 
-// 화면 임포트
+// 인증 화면 임포트
+import LoginScreen from "../screens/LoginScreen";
+import UserTypeSelectionScreen from "../screens/UserTypeSelectionScreen";
+import CustomerSignupScreen from "../screens/CustomerSignupScreen";
+import DriverSignupScreen from "../screens/DriverSignupScreen";
+
+// 메인 화면 임포트
 import ModeSelectionScreen from "../screens/ModeSelectionScreen";
 import DriverHomeScreen from "../screens/DriverHomeScreen";
 import CustomerHomeScreen from "../screens/CustomerHomeScreen";
@@ -113,17 +121,65 @@ function CustomerTabNavigator() {
   );
 }
 
+// 인증 스택 네비게이터
+function AuthStackNavigator() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="UserTypeSelection" component={UserTypeSelectionScreen} />
+      <Stack.Screen name="CustomerSignup" component={CustomerSignupScreen} />
+      <Stack.Screen name="DriverSignup" component={DriverSignupScreen} />
+    </Stack.Navigator>
+  );
+}
+
+// 메인 앱 스택 네비게이터
+function MainStackNavigator() {
+  return (
+    <Stack.Navigator
+      initialRouteName="ModeSelection"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="ModeSelection" component={ModeSelectionScreen} />
+      <Stack.Screen name="DriverTabs" component={DriverTabNavigator} />
+      <Stack.Screen name="CustomerTabs" component={CustomerTabNavigator} />
+    </Stack.Navigator>
+  );
+}
+
+// 로딩 스크린 컴포넌트
+function LoadingScreen() {
+  return (
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size="large" color="#3498db" />
+    </View>
+  );
+}
+
 export default function AppNavigator() {
+  const { state } = useAuth();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="ModeSelection"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="ModeSelection" component={ModeSelectionScreen} />
-        <Stack.Screen name="DriverTabs" component={DriverTabNavigator} />
-        <Stack.Screen name="CustomerTabs" component={CustomerTabNavigator} />
-      </Stack.Navigator>
+      {state.isLoading ? (
+        <LoadingScreen />
+      ) : state.isAuthenticated ? (
+        <MainStackNavigator />
+      ) : (
+        <AuthStackNavigator />
+      )}
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f8f9fa",
+  },
+});

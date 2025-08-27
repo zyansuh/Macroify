@@ -7,6 +7,7 @@ import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
 
 import AppNavigator from "./src/navigation/AppNavigator";
 import { AppProvider } from "./src/contexts/AppContext";
+import { AuthProvider } from "./src/contexts/AuthContext";
 
 // 알림 설정
 Notifications.setNotificationHandler({
@@ -82,9 +83,11 @@ export default function App() {
   };
 
   return (
-    <AppProvider>
-      <StatusBar style="auto" />
-      <AppNavigator />
-    </AppProvider>
+    <AuthProvider>
+      <AppProvider>
+        <StatusBar style="auto" />
+        <AppNavigator />
+      </AppProvider>
+    </AuthProvider>
   );
 }

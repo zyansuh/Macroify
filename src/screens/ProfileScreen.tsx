@@ -7,18 +7,38 @@ import {
   SafeAreaView,
   ScrollView,
   Image,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function ProfileScreen() {
+  const { state, logout } = useAuth();
+  
   const userInfo = {
-    name: "김대리",
-    phone: "010-1234-5678",
-    email: "kim.daeri@example.com",
+    name: state.user?.name || "김대리",
+    phone: state.user?.phone || "010-1234-5678",
+    email: state.user?.email || "kim.daeri@example.com",
     rating: 4.8,
     totalRides: 156,
     memberSince: "2023.03.15",
+  };
+
+  const handleLogout = () => {
+    Alert.alert(
+      "로그아웃",
+      "정말로 로그아웃하시겠습니까?",
+      [
+        { text: "취소", style: "cancel" },
+        { 
+          text: "로그아웃", 
+          onPress: async () => {
+            await logout();
+          }
+        },
+      ]
+    );
   };
 
   return (
@@ -168,7 +188,10 @@ export default function ProfileScreen() {
 
         {/* 로그아웃 */}
         <View style={styles.menuCard}>
-          <TouchableOpacity style={[styles.menuItem, styles.logoutItem]}>
+          <TouchableOpacity 
+            style={[styles.menuItem, styles.logoutItem]}
+            onPress={handleLogout}
+          >
             <View style={styles.menuLeft}>
               <Ionicons name="log-out-outline" size={24} color="#e74c3c" />
               <Text style={[styles.menuText, styles.logoutText]}>로그아웃</Text>
