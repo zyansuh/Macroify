@@ -36,7 +36,7 @@ export default function LoginScreen({ navigation }: Props) {
     setIsLoading(true);
     try {
       const success = await login({ email, password });
-      
+
       if (success) {
         // 로그인 성공 시 메인 화면으로 이동 (네비게이션에서 자동 처리)
         console.log("로그인 성공");
@@ -54,7 +54,7 @@ export default function LoginScreen({ navigation }: Props) {
     setIsLoading(true);
     try {
       const success = await loginWithKakao();
-      
+
       if (success) {
         console.log("카카오 로그인 성공");
       } else {
@@ -74,12 +74,12 @@ export default function LoginScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-      
+
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.keyboardView}
       >
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
@@ -169,10 +169,10 @@ export default function LoginScreen({ navigation }: Props) {
               <TouchableOpacity style={styles.linkButton}>
                 <Text style={styles.linkText}>비밀번호 찾기</Text>
               </TouchableOpacity>
-              
+
               <Text style={styles.linkSeparator}>|</Text>
-              
-              <TouchableOpacity 
+
+              <TouchableOpacity
                 style={styles.linkButton}
                 onPress={navigateToSignup}
               >
@@ -187,9 +187,7 @@ export default function LoginScreen({ navigation }: Props) {
               style={styles.guestButton}
               onPress={() => navigation.navigate("ModeSelection")}
             >
-              <Text style={styles.guestButtonText}>
-                둘러보기 (게스트 모드)
-              </Text>
+              <Text style={styles.guestButtonText}>둘러보기 (게스트 모드)</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

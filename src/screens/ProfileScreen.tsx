@@ -15,7 +15,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 export default function ProfileScreen() {
   const { state, logout } = useAuth();
-  
+
   const userInfo = {
     name: state.user?.name || "김대리",
     phone: state.user?.phone || "010-1234-5678",
@@ -26,19 +26,15 @@ export default function ProfileScreen() {
   };
 
   const handleLogout = () => {
-    Alert.alert(
-      "로그아웃",
-      "정말로 로그아웃하시겠습니까?",
-      [
-        { text: "취소", style: "cancel" },
-        { 
-          text: "로그아웃", 
-          onPress: async () => {
-            await logout();
-          }
+    Alert.alert("로그아웃", "정말로 로그아웃하시겠습니까?", [
+      { text: "취소", style: "cancel" },
+      {
+        text: "로그아웃",
+        onPress: async () => {
+          await logout();
         },
-      ]
-    );
+      },
+    ]);
   };
 
   return (
@@ -188,7 +184,7 @@ export default function ProfileScreen() {
 
         {/* 로그아웃 */}
         <View style={styles.menuCard}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.menuItem, styles.logoutItem]}
             onPress={handleLogout}
           >

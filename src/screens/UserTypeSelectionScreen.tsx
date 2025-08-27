@@ -32,7 +32,7 @@ export default function UserTypeSelectionScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-      
+
       {/* 뒤로가기 버튼 */}
       <TouchableOpacity style={styles.backButton} onPress={goBackToLogin}>
         <Ionicons name="chevron-back" size={24} color="#2c3e50" />
@@ -57,7 +57,7 @@ export default function UserTypeSelectionScreen({ navigation }: Props) {
               <Text style={styles.typeButtonDescription}>
                 대리운전 서비스를{"\n"}이용하고 싶어요
               </Text>
-              
+
               <View style={styles.featureList}>
                 <View style={styles.featureItem}>
                   <Ionicons name="checkmark-circle" size={16} color="#ffffff" />
@@ -87,7 +87,7 @@ export default function UserTypeSelectionScreen({ navigation }: Props) {
               <Text style={styles.typeButtonDescription}>
                 대리운전 서비스를{"\n"}제공하고 싶어요
               </Text>
-              
+
               <View style={styles.featureList}>
                 <View style={styles.featureItem}>
                   <Ionicons name="checkmark-circle" size={16} color="#ffffff" />
@@ -108,7 +108,11 @@ export default function UserTypeSelectionScreen({ navigation }: Props) {
 
         {/* 안내 메시지 */}
         <View style={styles.infoContainer}>
-          <Ionicons name="information-circle-outline" size={20} color="#7f8c8d" />
+          <Ionicons
+            name="information-circle-outline"
+            size={20}
+            color="#7f8c8d"
+          />
           <Text style={styles.infoText}>
             회원가입 후에도 계정 유형을 변경할 수 있습니다.
           </Text>

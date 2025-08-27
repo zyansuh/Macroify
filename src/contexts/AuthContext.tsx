@@ -1,10 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
-import {
-  User,
-  AuthState,
-  LoginCredentials,
-  SignupData,
-} from "../types";
+import { User, AuthState, LoginCredentials, SignupData } from "../types";
 import AuthService from "../services/AuthService";
 
 // 액션 타입 정의
@@ -94,9 +89,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const checkAutoLogin = async () => {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
-      
+
       const result = await authService.checkAutoLogin();
-      
+
       if (result.isAuthenticated && result.user && result.token) {
         dispatch({
           type: "LOGIN_SUCCESS",
@@ -117,9 +112,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (credentials: LoginCredentials): Promise<boolean> => {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
-      
+
       const result = await authService.login(credentials);
-      
+
       if (result.success && result.user && result.token) {
         dispatch({
           type: "LOGIN_SUCCESS",
@@ -143,9 +138,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const loginWithKakao = async (): Promise<boolean> => {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
-      
+
       const result = await authService.loginWithKakao();
-      
+
       if (result.success && result.user && result.token) {
         dispatch({
           type: "LOGIN_SUCCESS",
@@ -169,9 +164,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signup = async (signupData: SignupData): Promise<boolean> => {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
-      
+
       const result = await authService.signup(signupData);
-      
+
       if (result.success && result.user && result.token) {
         dispatch({
           type: "LOGIN_SUCCESS",
@@ -221,9 +216,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 }
 

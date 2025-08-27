@@ -97,44 +97,21 @@ class AuthService {
   }
 
   /**
-   * 카카오 로그인
+   * 카카오 로그인 (임시 비활성화)
    */
-  async loginWithKakao(): Promise<{ success: boolean; user?: User; token?: string }> {
+  async loginWithKakao(): Promise<{
+    success: boolean;
+    user?: User;
+    token?: string;
+  }> {
     try {
-      // 카카오 OAuth URL 생성
-      const authUrl = `${KAKAO_AUTH_BASE}/oauth/authorize?response_type=code&client_id=${this.KAKAO_APP_KEY}&redirect_uri=${this.REDIRECT_URI}`;
-
-      // 웹 브라우저로 카카오 로그인 페이지 열기
-      const result = await WebBrowser.openAuthSessionAsync(
-        authUrl,
-        this.REDIRECT_URI!
+      // 임시로 목업 카카오 로그인
+      Alert.alert(
+        "카카오 로그인",
+        "카카오 로그인 기능은 현재 개발 중입니다. 일반 로그인을 이용해주세요.",
+        [{ text: "확인" }]
       );
-
-      if (result.type === "success" && result.url) {
-        // 인증 코드 추출
-        const code = this.extractCodeFromUrl(result.url);
-        
-        if (code) {
-          // 액세스 토큰 요청
-          const tokenResponse = await this.getKakaoAccessToken(code);
-          
-          if (tokenResponse.access_token) {
-            // 사용자 정보 가져오기
-            const userInfo = await this.getKakaoUserInfo(tokenResponse.access_token);
-            
-            if (userInfo) {
-              // 서버에 사용자 등록/로그인 요청 (여기서는 목업 데이터)
-              const user = await this.createOrLoginKakaoUser(userInfo);
-              
-              await this.storeToken(tokenResponse.access_token);
-              await this.storeUser(user);
-              
-              return { success: true, user, token: tokenResponse.access_token };
-            }
-          }
-        }
-      }
-
+      
       return { success: false };
     } catch (error) {
       console.error("카카오 로그인 오류:", error);
@@ -175,7 +152,9 @@ class AuthService {
   /**
    * 카카오 사용자 정보 가져오기
    */
-  private async getKakaoUserInfo(accessToken: string): Promise<KakaoUserInfo | null> {
+  private async getKakaoUserInfo(
+    accessToken: string
+  ): Promise<KakaoUserInfo | null> {
     try {
       const response = await fetch(`${KAKAO_API_BASE}/v2/user/me`, {
         method: "GET",
@@ -199,7 +178,9 @@ class AuthService {
   /**
    * 카카오 사용자 생성/로그인 (목업)
    */
-  private async createOrLoginKakaoUser(kakaoUser: KakaoUserInfo): Promise<User> {
+  private async createOrLoginKakaoUser(
+    kakaoUser: KakaoUserInfo
+  ): Promise<User> {
     // 실제로는 백엔드 서버에 요청해야 함
     // 여기서는 목업 데이터 반환
     return {
@@ -217,7 +198,9 @@ class AuthService {
   /**
    * 일반 로그인
    */
-  async login(credentials: LoginCredentials): Promise<{ success: boolean; user?: User; token?: string }> {
+  async login(
+    credentials: LoginCredentials
+  ): Promise<{ success: boolean; user?: User; token?: string }> {
     try {
       // 실제로는 백엔드 API 호출
       // 여기서는 목업 로그인
@@ -246,7 +229,9 @@ class AuthService {
   /**
    * 회원가입
    */
-  async signup(signupData: SignupData): Promise<{ success: boolean; user?: User; token?: string }> {
+  async signup(
+    signupData: SignupData
+  ): Promise<{ success: boolean; user?: User; token?: string }> {
     try {
       // 실제로는 백엔드 API 호출
       // 여기서는 목업 회원가입
@@ -288,7 +273,11 @@ class AuthService {
   /**
    * 자동 로그인 체크
    */
-  async checkAutoLogin(): Promise<{ isAuthenticated: boolean; user?: User; token?: string }> {
+  async checkAutoLogin(): Promise<{
+    isAuthenticated: boolean;
+    user?: User;
+    token?: string;
+  }> {
     try {
       const token = await this.getStoredToken();
       const user = await this.getStoredUser();

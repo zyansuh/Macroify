@@ -129,7 +129,10 @@ function AuthStackNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="UserTypeSelection" component={UserTypeSelectionScreen} />
+      <Stack.Screen
+        name="UserTypeSelection"
+        component={UserTypeSelectionScreen}
+      />
       <Stack.Screen name="CustomerSignup" component={CustomerSignupScreen} />
       <Stack.Screen name="DriverSignup" component={DriverSignupScreen} />
     </Stack.Navigator>

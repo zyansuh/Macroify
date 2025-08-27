@@ -50,7 +50,7 @@ export default function DriverSignupScreen({ navigation }: Props) {
   const { signup } = useAuth();
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const validateForm = () => {
@@ -201,8 +201,8 @@ export default function DriverSignupScreen({ navigation }: Props) {
 
       {/* 헤더 */}
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.backButton} 
+        <TouchableOpacity
+          style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
           <Ionicons name="chevron-back" size={24} color="#2c3e50" />
@@ -215,7 +215,7 @@ export default function DriverSignupScreen({ navigation }: Props) {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.keyboardView}
       >
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
@@ -231,7 +231,7 @@ export default function DriverSignupScreen({ navigation }: Props) {
             {/* 기본 정보 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>기본 정보</Text>
-              
+
               <View style={styles.inputContainer}>
                 <Ionicons name="person-outline" size={20} color="#7f8c8d" />
                 <TextInput
@@ -272,9 +272,13 @@ export default function DriverSignupScreen({ navigation }: Props) {
             {/* 보안 설정 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>보안 설정</Text>
-              
+
               <View style={styles.inputContainer}>
-                <Ionicons name="lock-closed-outline" size={20} color="#7f8c8d" />
+                <Ionicons
+                  name="lock-closed-outline"
+                  size={20}
+                  color="#7f8c8d"
+                />
                 <TextInput
                   style={styles.textInput}
                   placeholder="비밀번호 (6자 이상)"
@@ -296,12 +300,18 @@ export default function DriverSignupScreen({ navigation }: Props) {
               </View>
 
               <View style={styles.inputContainer}>
-                <Ionicons name="lock-closed-outline" size={20} color="#7f8c8d" />
+                <Ionicons
+                  name="lock-closed-outline"
+                  size={20}
+                  color="#7f8c8d"
+                />
                 <TextInput
                   style={styles.textInput}
                   placeholder="비밀번호 확인"
                   value={formData.confirmPassword}
-                  onChangeText={(value) => handleInputChange("confirmPassword", value)}
+                  onChangeText={(value) =>
+                    handleInputChange("confirmPassword", value)
+                  }
                   secureTextEntry={!showConfirmPassword}
                   autoComplete="new-password"
                 />
@@ -310,7 +320,9 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   style={styles.eyeButton}
                 >
                   <Ionicons
-                    name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
+                    name={
+                      showConfirmPassword ? "eye-outline" : "eye-off-outline"
+                    }
                     size={20}
                     color="#7f8c8d"
                   />
@@ -321,14 +333,16 @@ export default function DriverSignupScreen({ navigation }: Props) {
             {/* 면허 정보 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>운전면허 정보</Text>
-              
+
               <View style={styles.inputContainer}>
                 <Ionicons name="card-outline" size={20} color="#7f8c8d" />
                 <TextInput
                   style={styles.textInput}
                   placeholder="운전면허 번호"
                   value={formData.licenseNumber}
-                  onChangeText={(value) => handleInputChange("licenseNumber", value)}
+                  onChangeText={(value) =>
+                    handleInputChange("licenseNumber", value)
+                  }
                 />
               </View>
 
@@ -338,7 +352,9 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   style={styles.textInput}
                   placeholder="면허 만료일 (YYYY-MM-DD)"
                   value={formData.licenseExpiry}
-                  onChangeText={(value) => handleInputChange("licenseExpiry", value)}
+                  onChangeText={(value) =>
+                    handleInputChange("licenseExpiry", value)
+                  }
                 />
               </View>
             </View>
@@ -346,7 +362,7 @@ export default function DriverSignupScreen({ navigation }: Props) {
             {/* 차량 정보 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>차량 정보</Text>
-              
+
               <View style={styles.inputContainer}>
                 <Ionicons name="car-outline" size={20} color="#7f8c8d" />
                 <TextInput
@@ -363,28 +379,42 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   style={styles.textInput}
                   placeholder="차량 번호 (예: 12가3456)"
                   value={formData.licensePlate}
-                  onChangeText={(value) => handleInputChange("licensePlate", value)}
+                  onChangeText={(value) =>
+                    handleInputChange("licensePlate", value)
+                  }
                 />
               </View>
 
               <View style={styles.row}>
                 <View style={[styles.inputContainer, styles.halfWidth]}>
-                  <Ionicons name="color-palette-outline" size={20} color="#7f8c8d" />
+                  <Ionicons
+                    name="color-palette-outline"
+                    size={20}
+                    color="#7f8c8d"
+                  />
                   <TextInput
                     style={styles.textInput}
                     placeholder="색상"
                     value={formData.carColor}
-                    onChangeText={(value) => handleInputChange("carColor", value)}
+                    onChangeText={(value) =>
+                      handleInputChange("carColor", value)
+                    }
                   />
                 </View>
 
                 <View style={[styles.inputContainer, styles.halfWidth]}>
-                  <Ionicons name="calendar-number-outline" size={20} color="#7f8c8d" />
+                  <Ionicons
+                    name="calendar-number-outline"
+                    size={20}
+                    color="#7f8c8d"
+                  />
                   <TextInput
                     style={styles.textInput}
                     placeholder="연식"
                     value={formData.carYear}
-                    onChangeText={(value) => handleInputChange("carYear", value)}
+                    onChangeText={(value) =>
+                      handleInputChange("carYear", value)
+                    }
                     keyboardType="numeric"
                   />
                 </View>
@@ -394,7 +424,7 @@ export default function DriverSignupScreen({ navigation }: Props) {
             {/* 정산 계좌 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>정산 계좌 정보</Text>
-              
+
               <View style={styles.inputContainer}>
                 <Ionicons name="business-outline" size={20} color="#7f8c8d" />
                 <TextInput
@@ -411,7 +441,9 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   style={styles.textInput}
                   placeholder="계좌번호"
                   value={formData.accountNumber}
-                  onChangeText={(value) => handleInputChange("accountNumber", value)}
+                  onChangeText={(value) =>
+                    handleInputChange("accountNumber", value)
+                  }
                   keyboardType="numeric"
                 />
               </View>
@@ -422,7 +454,9 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   style={styles.textInput}
                   placeholder="예금주명"
                   value={formData.accountHolder}
-                  onChangeText={(value) => handleInputChange("accountHolder", value)}
+                  onChangeText={(value) =>
+                    handleInputChange("accountHolder", value)
+                  }
                 />
               </View>
             </View>
@@ -430,7 +464,7 @@ export default function DriverSignupScreen({ navigation }: Props) {
             {/* 약관 동의 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>약관 동의</Text>
-              
+
               <TouchableOpacity
                 style={styles.checkboxContainer}
                 onPress={() => setAgreeTerms(!agreeTerms)}
@@ -441,7 +475,8 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   color={agreeTerms ? "#2E8B57" : "#bdc3c7"}
                 />
                 <Text style={styles.checkboxText}>
-                  <Text style={styles.required}>(필수)</Text> 서비스 이용약관 동의
+                  <Text style={styles.required}>(필수)</Text> 서비스 이용약관
+                  동의
                 </Text>
               </TouchableOpacity>
 
@@ -455,7 +490,8 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   color={agreePrivacy ? "#2E8B57" : "#bdc3c7"}
                 />
                 <Text style={styles.checkboxText}>
-                  <Text style={styles.required}>(필수)</Text> 개인정보 처리방침 동의
+                  <Text style={styles.required}>(필수)</Text> 개인정보 처리방침
+                  동의
                 </Text>
               </TouchableOpacity>
 
@@ -469,7 +505,8 @@ export default function DriverSignupScreen({ navigation }: Props) {
                   color={agreeDriverTerms ? "#2E8B57" : "#bdc3c7"}
                 />
                 <Text style={styles.checkboxText}>
-                  <Text style={styles.required}>(필수)</Text> 대리운전 기사 약관 동의
+                  <Text style={styles.required}>(필수)</Text> 대리운전 기사 약관
+                  동의
                 </Text>
               </TouchableOpacity>
             </View>

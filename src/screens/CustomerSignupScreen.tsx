@@ -36,7 +36,7 @@ export default function CustomerSignupScreen({ navigation }: Props) {
   const { signup } = useAuth();
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const validateForm = () => {
@@ -63,7 +63,10 @@ export default function CustomerSignupScreen({ navigation }: Props) {
 
     const phoneRegex = /^010-?[0-9]{4}-?[0-9]{4}$/;
     if (!phoneRegex.test(formData.phone.replace(/[^0-9]/g, ""))) {
-      Alert.alert("입력 확인", "올바른 전화번호 형식을 입력해주세요. (010-1234-5678)");
+      Alert.alert(
+        "입력 확인",
+        "올바른 전화번호 형식을 입력해주세요. (010-1234-5678)"
+      );
       return false;
     }
 
@@ -101,11 +104,9 @@ export default function CustomerSignupScreen({ navigation }: Props) {
       const success = await signup(signupData);
 
       if (success) {
-        Alert.alert(
-          "회원가입 완료",
-          "환영합니다! 로그인되었습니다.",
-          [{ text: "확인" }]
-        );
+        Alert.alert("회원가입 완료", "환영합니다! 로그인되었습니다.", [
+          { text: "확인" },
+        ]);
       } else {
         Alert.alert("회원가입 실패", "회원가입 중 문제가 발생했습니다.");
       }
@@ -122,8 +123,8 @@ export default function CustomerSignupScreen({ navigation }: Props) {
 
       {/* 헤더 */}
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.backButton} 
+        <TouchableOpacity
+          style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
           <Ionicons name="chevron-back" size={24} color="#2c3e50" />
@@ -136,7 +137,7 @@ export default function CustomerSignupScreen({ navigation }: Props) {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.keyboardView}
       >
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
@@ -144,7 +145,7 @@ export default function CustomerSignupScreen({ navigation }: Props) {
             {/* 프로필 섹션 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>기본 정보</Text>
-              
+
               {/* 이름 */}
               <View style={styles.inputContainer}>
                 <Ionicons name="person-outline" size={20} color="#7f8c8d" />
@@ -188,10 +189,14 @@ export default function CustomerSignupScreen({ navigation }: Props) {
             {/* 보안 섹션 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>보안 설정</Text>
-              
+
               {/* 비밀번호 */}
               <View style={styles.inputContainer}>
-                <Ionicons name="lock-closed-outline" size={20} color="#7f8c8d" />
+                <Ionicons
+                  name="lock-closed-outline"
+                  size={20}
+                  color="#7f8c8d"
+                />
                 <TextInput
                   style={styles.textInput}
                   placeholder="비밀번호 (6자 이상)"
@@ -214,12 +219,18 @@ export default function CustomerSignupScreen({ navigation }: Props) {
 
               {/* 비밀번호 확인 */}
               <View style={styles.inputContainer}>
-                <Ionicons name="lock-closed-outline" size={20} color="#7f8c8d" />
+                <Ionicons
+                  name="lock-closed-outline"
+                  size={20}
+                  color="#7f8c8d"
+                />
                 <TextInput
                   style={styles.textInput}
                   placeholder="비밀번호 확인"
                   value={formData.confirmPassword}
-                  onChangeText={(value) => handleInputChange("confirmPassword", value)}
+                  onChangeText={(value) =>
+                    handleInputChange("confirmPassword", value)
+                  }
                   secureTextEntry={!showConfirmPassword}
                   autoComplete="new-password"
                 />
@@ -228,7 +239,9 @@ export default function CustomerSignupScreen({ navigation }: Props) {
                   style={styles.eyeButton}
                 >
                   <Ionicons
-                    name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
+                    name={
+                      showConfirmPassword ? "eye-outline" : "eye-off-outline"
+                    }
                     size={20}
                     color="#7f8c8d"
                   />
@@ -239,7 +252,7 @@ export default function CustomerSignupScreen({ navigation }: Props) {
             {/* 약관 동의 */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>약관 동의</Text>
-              
+
               <TouchableOpacity
                 style={styles.checkboxContainer}
                 onPress={() => setAgreeTerms(!agreeTerms)}
@@ -250,7 +263,8 @@ export default function CustomerSignupScreen({ navigation }: Props) {
                   color={agreeTerms ? "#1E90FF" : "#bdc3c7"}
                 />
                 <Text style={styles.checkboxText}>
-                  <Text style={styles.required}>(필수)</Text> 서비스 이용약관 동의
+                  <Text style={styles.required}>(필수)</Text> 서비스 이용약관
+                  동의
                 </Text>
               </TouchableOpacity>
 
@@ -264,7 +278,8 @@ export default function CustomerSignupScreen({ navigation }: Props) {
                   color={agreePrivacy ? "#1E90FF" : "#bdc3c7"}
                 />
                 <Text style={styles.checkboxText}>
-                  <Text style={styles.required}>(필수)</Text> 개인정보 처리방침 동의
+                  <Text style={styles.required}>(필수)</Text> 개인정보 처리방침
+                  동의
                 </Text>
               </TouchableOpacity>
             </View>
